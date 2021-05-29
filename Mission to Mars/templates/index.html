@@ -28,8 +28,8 @@
         <div class="row">
             <div class="col col-12">
                 <h2>Latest Mars News</h2>
-                <h3>{{marspage.latest_news_title}}</h3>
-                {{marspage.latest_news_paragraph}}
+                <h3>{{marspage.news_title}}</h3>
+                {{marspage.news_paragraph}}
             </div>
         </div>
         <div class="row">
@@ -53,7 +53,7 @@
             <div class="col col-6">
                 <div class="boxmargin">
                     <img src={{image_url.img_url}} alt={{image_url.img_url}}>
-                    <h3>{{image_url.title}}</h3>
+                    <h3>{{image_url.title}}</h3> 
                 </div>
             </div>
             {% endfor %}

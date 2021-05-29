@@ -107,8 +107,8 @@ def scrape():
 
     
     marspage = {}
-    marspage["news_test"] = news_title
-    marspage["news_find"] = news_paragraph 
+    marspage["news_title"] = news_title
+    marspage["news_paragraph"] = news_paragraph 
     marspage["featured_image_url"] = featured_image_url
     marspage["marsfacts_html"] = facts_html
     marspage["hemisphere_image_urls"] = hemisphere_image_urls
