@@ -27,9 +27,10 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html,'html.parser')
 
-    news = soup.find('div', class_="list_text")
-    news_title = news.text
-    news_paragraph = news.find('div',class_="article_teaser_body").text
+    results = soup.find_all('div', class_='list_text')[0] 
+    news_title = results.find('div',class_='content_title').text
+    news_paragraph = results.find('div',class_='article_teaser_body').text
+
 
     print(f"Latest News Title: {news_title}")
     print(f"Latest News Paragraph: {news_paragraph}")
@@ -50,23 +51,26 @@ def scrape():
 
     # Mars facts
 
-    #Launch Website and Parses Data into Beautiful Soup.
-    facts_url = 'https://galaxyfacts-mars.com/'
-    browser.visit(facts_url)
+   #Launch Website and Parses Data into Beautiful Soup.
+    url = 'https://galaxyfacts-mars.com/'
 
-    tables = pd.read_html(facts_url)
+    # Use Panda's `read_html` to parse the url
+    tables = pd.read_html(url)
 
-    table_df = tables[1]
-    table_df.columns = ["Description","Value"]
-    facts_df = table_df.set_index("Description")
-    facts_df
+    len(tables)
+    tables[0]
+    df = tables[0]
+    # Cleaning up table
+    df.columns = ['Description','Mars','Earth']
+    df.head()
 
-    facts_html = table_df.to_html(classes = 'table table-striped')
+    # Resetting index
+    df.set_index(df.Description,inplace=True)
+    mars_facts = df.to_html()
 
-    html_table = (table_df.to_html()).replace('\n', '')
+    mars_facts = df.to_html(classes = 'table table-striped')
 
-    
-        
+
     # Mars Hemispheres
 
     #Visit the astrogeology site here to obtain high resolution images for each of Mar's hemispheres.
@@ -107,7 +111,7 @@ def scrape():
     marspage["news_title"] = news_title
     marspage["news_paragraph"] = news_paragraph 
     marspage["featured_image_url"] = featured_image_url
-    marspage["facts_html"] = facts_html
+    marspage["marsfacts_html"] = mars_facts
     marspage["hemisphere_image_urls"] = hemisphere_image_urls
 
 
