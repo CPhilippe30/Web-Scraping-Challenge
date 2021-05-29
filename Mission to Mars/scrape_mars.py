@@ -51,24 +51,21 @@ def scrape():
     # Mars facts
 
     #Launch Website and Parses Data into Beautiful Soup.
-    facts_url = 'https://space-facts.com/mars/'
+    facts_url = 'https://galaxyfacts-mars.com/'
+    browser.visit(facts_url)
+
     tables = pd.read_html(facts_url)
 
-    facts_df = tables[0]
-    facts_df.columns = ['Fact', 'Value']
-    facts_df['Fact'] = facts_df['Fact'].str.replace(':', '')
+    table_df = tables[1]
+    table_df.columns = ["Description","Value"]
+    facts_df = table_df.set_index("Description")
+    facts_df
 
-    facts_df = tables[0]
-    facts_df.columns = ['Fact', 'Value']
-    facts_df['Fact'] = facts_df['Fact'].str.replace(':', '')
+    facts_html = table_df.to_html(classes = 'table table-striped')
 
-    facts_html = facts_df.to_html()
+    html_table = (table_df.to_html()).replace('\n', '')
 
-    #Use Pandas to convert the data to a HTML table string.
-    html_table = (facts_df.to_html()).replace('\n', '')
-    html_table
-
-
+    
         
     # Mars Hemispheres
 
