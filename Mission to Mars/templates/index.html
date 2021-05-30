@@ -40,15 +40,14 @@
       </div>
         </div>
         <br><br>
-        <h4 style="padding-top: 50px; margin-top: 100px; text-align: center;">
+        <h4 style="padding-top: 50px; margin-top: 100px; text-align: center;"><h4>Mars Hemisphere</h4> 
         <div class="row">
             <div class="card-deck">
-                <h4>Mars Hemisphere</h4>
             </div>
         <div class="row">
             {% for image_url in  marspage.hemisphere_image_urls %}
             <div class="col-md-6" style="text-align: center">
-                <div class="card" style="margin: 30px;">
+                <div class="card" style="margin: 20px;">
                     <img src={{image_url.img_url}} alt={{image_url.img_url}}>
                     <h3>{{image_url.title}}</h3> 
                     <div class="card text-white bg-dark" style="margin: 30px;">
